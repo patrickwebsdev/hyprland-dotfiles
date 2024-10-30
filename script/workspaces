@@ -1,0 +1,46 @@
+#!/bin/sh 
+
+# Obtener el id del workspace actual
+ACTUAL_DIR=$(hyprctl activeworkspace -j | jq -r '.id')
+
+
+# Comprobar si el valor está dentro de un rango y realizar las operaciones
+if [ "$ACTUAL_DIR" -ge 1 ] && [ "$ACTUAL_DIR" -le 5 ]; then
+    if [ "$1" = "left" ]; then
+        echo "left"
+        if [ "$ACTUAL_DIR" -gt 1 ]; then
+            hyprsome workspace $((ACTUAL_DIR - 1))
+        fi
+    elif [ "$1" = "right" ]; then
+        echo "right"
+        if [ "$ACTUAL_DIR" -lt 5 ]; then
+            hyprsome workspace $((ACTUAL_DIR + 1))
+        fi
+    fi
+elif [ "$ACTUAL_DIR" -ge 11 ] && [ "$ACTUAL_DIR" -le 15 ]; then
+    if [ "$1" = "left" ]; then
+        echo "left"
+        if [ "$ACTUAL_DIR" -gt 11 ]; then
+            hyprsome workspace $((ACTUAL_DIR - 1))
+        fi
+    elif [ "$1" = "right" ]; then
+        echo "right"
+        if [ "$ACTUAL_DIR" -lt 15 ]; then
+            hyprsome workspace $((ACTUAL_DIR + 1))
+        fi
+    fi
+elif [ "$ACTUAL_DIR" -ge 21 ] && [ "$ACTUAL_DIR" -le 25 ]; then
+    if [ "$1" = "left" ]; then
+        echo "left"
+        if [ "$ACTUAL_DIR" -gt 21 ]; then
+            hyprsome workspace $((ACTUAL_DIR - 1))
+            echo $((ACTUAL_DIR - 1));
+        fi
+    elif [ "$1" = "right" ]; then
+        echo "right"
+        if [ "$ACTUAL_DIR" -lt 25 ]; then
+            hyprsome workspace $((ACTUAL_DIR + 1))
+            echo $((ACTUAL_DIR + 1));
+        fi
+    fi
+fi
